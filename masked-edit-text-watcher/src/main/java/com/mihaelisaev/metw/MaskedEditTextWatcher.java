@@ -73,7 +73,10 @@ public class MaskedEditTextWatcher implements TextWatcher {
 
     private String unmask(String s, String countryCode) {
         s = s.replace("+", "");
-        s = s.substring(countryCode.replace("+", "").length());
+        String countryCodeTmp = countryCode.replace("+", "");
+        if (s.substring(0, countryCodeTmp.length()).equals(countryCodeTmp)) {
+            s = s.substring(countryCodeTmp.length());
+        }
         s = s.replaceAll("\\D", "");
         return s;
     }
